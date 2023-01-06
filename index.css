@@ -1,0 +1,13 @@
+*{
+    margin: 10;
+    padding: 20;
+}
+#container{
+background-color: red(171, 236, 214);
+color: rgb(4, 10, 52);
+padding: 1.5rem;
+display: flex;
+}
+h1{
+    color: blue;
+}
