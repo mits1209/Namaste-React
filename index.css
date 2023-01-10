@@ -1,13 +1,25 @@
 *{
-    margin: 10;
-    padding: 20;
+    margin: 0;
+    padding: 10;
 }
 #container{
-background-color: red(171, 236, 214);
 color: rgb(4, 10, 52);
 padding: 1.5rem;
-display: flex;
+}
+.container{
+    text-align: center;
 }
 h1{
     color: blue;
+}
+.head{
+    float: center;
+    
+}
+.mylogo{
+    float: left;
+}
+
+.user{
+    float: right;
 }
