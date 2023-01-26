@@ -31,3 +31,12 @@ word-wrap: break-word;
     display: flex;
     flex-flow: wrap;
 }
+.Shimmer-card {
+    width: 200px;
+    height: 200px;
+    background-color: lightgrey;
+    margin: 20px;
+}
+.menu {
+    display: flex;
+}

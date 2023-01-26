@@ -1,9 +1,7 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
-// const loggedInUser = () => {
-//    // API call to check authentication
-//    return true;
-// }
+
 
 const Title = () => (
     <a href="/">
@@ -22,10 +20,10 @@ const Title = () => (
              <Title/>
              <div className='nav-items'>
               <ul>
-                 <li>Home</li>
-                 <li>About</li>
-                 <li>Contact</li>
-                 <li>cart</li>
+              <li><Link to="/">Home</Link></li>
+                 <li><Link to="/about">About</Link ></li>
+                  <li><Link to="/contact">Contact</Link> </li>
+                  <li><Link to="">cart</Link></li>
               </ul>
              </div>
                {isLoggedIn ?
