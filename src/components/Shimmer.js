@@ -5,6 +5,7 @@ const Shimmer = () => {
         .map((e, index) => (
         <div key={index} lassName="Shimmer-card"></div>
         ))}
+       
             
            </div>);
 };

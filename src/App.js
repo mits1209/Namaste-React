@@ -9,7 +9,7 @@ import Error from "./components/Error";
 import Contact from './components/Contact';
 import RestaurantMenu from './components/RestaurantMenu';
 import Profile from './components/Profile';
-import ProfileClass from './components/ProfileClass';
+
 
 
 
@@ -39,10 +39,6 @@ const AppLayout = () => {
                children: [{
                   path: "profile",        // parentPath/{path} => localhost:1244/about/profile
                   element: <Profile />,
-               },
-               {
-                  path: "profile",        // parentPath/{path} => localhost:1244/about/profile
-                  element: <ProfileClass />,
                },
             ],
             },

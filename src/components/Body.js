@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 // import {restaurantList} from '../Constants';
 import RestaurantCard from './RestaurantCard';
-import Shimmer from './Shimmer';
+
+import Loader from './Loader';
 import {Link} from "react-router-dom";
 
 function filterData(searchText, restaurants) {
@@ -33,7 +34,7 @@ const Body = () => {
    
 //    {if(filteredrestaurants?.length === 0) return <h1> No Restaurant match your Filter!!</h1>};
 
-    return (allRestaurants.length === 0) ? <Shimmer /> :  (
+    return (allRestaurants.length === 0) ? <Loader /> :  (
         <>
         <div className="search-container">
             <input 
