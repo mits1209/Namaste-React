@@ -1,40 +1,47 @@
 import { useEffect, useState } from 'react';
 // import {restaurantList} from '../Constants';
 import RestaurantCard from './RestaurantCard';
-
-import Loader from './Loader';
+import Shimmer from './Shimmer';
 import {Link} from "react-router-dom";
-
-function filterData(searchText, restaurants) {
-    const filterData= restaurants.filter((restaurant) => 
-    restaurant?.data?.name?.toLowerCase().includes(searchText.toLowerCase()));
-return filterData;
-};
+import { filterData } from '../Utils/helper';
+import { GET_RESTAURANT } from "../Constants";
+import useOnline from '../Utils/useOnline';
 
 
 const Body = () => {
-    const [allRestaurants, setAllRestaurants] = useState([]);
+        
     const [searchText, setSearchText] = useState("");     // returns = [variable name, function to update the variable]
-    const [filteredrestaurants, setFilteredRestaurants] = useState([]);
+    const [allRestaurants, setAllRestaurants] = useState([]);
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+
+    
+    // const isOnline = useOnline(); 
+
+    // if (!isOnline) {
+    //     return <h1> Offline, please check your internet connection!!!</h1>;
+    // }
+
 
     useEffect(() => {
         getRestaurants();
     }, []);
 
     async function getRestaurants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.218575834858875&lng=78.16095163867622&page_type=DESKTOP_WEB_LISTING")
-    const json = await data.json();
-    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-   };
+        const data = await fetch(
+            GET_RESTAURANT)
+        const json = await data.json();
+        setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+        setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+       };
+  
+
 
 //    not render component (Early return)
    if(allRestaurants === 0) return null;
    
 //    {if(filteredrestaurants?.length === 0) return <h1> No Restaurant match your Filter!!</h1>};
 
-    return (allRestaurants.length === 0) ? <Loader /> :  (
+    return (allRestaurants.length === 0) ? <Shimmer /> :  (
         <>
         <div className="search-container">
             <input 
@@ -53,7 +60,7 @@ const Body = () => {
         </div>
        <div className='restaurant-List'>
         {    
-        filteredrestaurants.map((restaurant) => {
+        filteredRestaurants.map((restaurant) => {
          return (
             <Link 
                 to={"/restaurant/" + restaurant.data.id}
