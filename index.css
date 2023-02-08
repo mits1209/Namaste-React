@@ -1,4 +1,23 @@
-.header{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .header{
     display: flex;
     justify-content: space-between;
     margin: 10px;
@@ -39,4 +58,4 @@ word-wrap: break-word;
 }
 .menu {
     display: flex;
-}
+} */

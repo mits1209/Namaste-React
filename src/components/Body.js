@@ -4,8 +4,9 @@ import RestaurantCard from './RestaurantCard';
 import Shimmer from './Shimmer';
 import {Link} from "react-router-dom";
 import { filterData } from '../Utils/helper';
-import { GET_RESTAURANT } from "../Constants";
-import useOnline from '../Utils/useOnline';
+// import { GET_RESTAURANT } from "../Constants";
+// import useOnline from '../Utils/useOnline';
+import useGetRestaurant from '../Utils/useGetRestaurant';
 
 
 const Body = () => {
@@ -13,52 +14,38 @@ const Body = () => {
     const [searchText, setSearchText] = useState("");     // returns = [variable name, function to update the variable]
     const [allRestaurants, setAllRestaurants] = useState([]);
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
-    
-    // const isOnline = useOnline(); 
-
-    // if (!isOnline) {
-    //     return <h1> Offline, please check your internet connection!!!</h1>;
-    // }
-
-
-    useEffect(() => {
-        getRestaurants();
-    }, []);
-
-    async function getRestaurants() {
-        const data = await fetch(
-            GET_RESTAURANT)
-        const json = await data.json();
-        setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-        setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-       };
-  
-
+    const restaurantData = useGetRestaurant(setAllRestaurants, setFilteredRestaurants);
 
 //    not render component (Early return)
-   if(allRestaurants === 0) return null;
+   if(restaurantData === 0) return null;
    
 //    {if(filteredrestaurants?.length === 0) return <h1> No Restaurant match your Filter!!</h1>};
 
-    return (allRestaurants.length === 0) ? <Shimmer /> :  (
+
+
+    return (allRestaurants.length === 0) ? <Shimmer />:  (
         <>
-        <div className="search-container">
+        <div className="search-container p-5 bg-amber-100 my-5">
             <input 
             type="text" 
-            className="search-input" 
+            className="focus:bg-lime-100 p-2 m-2" 
             placeholder="Search" 
             value={searchText}
             onChange={(e) => {
                 setSearchText(e.target.value);
             }}
             /> 
-            <button className='search-btn' onClick={()=>{
+            <button 
+            className="p-2 m-5 bg-orange-700 hover:bg-orange-800 text-white rounded-md"
+            onClick={()=>{
                 const data = filterData(searchText, allRestaurants);
                 setFilteredRestaurants(data);
-            }}>Search</button>
+            }}
+            >
+            Search
+            </button>
         </div>
-       <div className='restaurant-List'>
+       <div className='flex flex-wrap'>
         {    
         filteredRestaurants.map((restaurant) => {
          return (
