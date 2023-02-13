@@ -23,7 +23,7 @@ const Body = () => {
 
 
 
-    return (allRestaurants.length === 0) ? <Shimmer />:  (
+    return (allRestaurants.length === 0) ? <Shimmer />:  ( 
         <>
         <div className="search-container p-5 bg-amber-100 my-5">
             <input 

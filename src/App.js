@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import Body from './components/Body';
@@ -9,6 +9,8 @@ import Contact from './components/Contact';
 import RestaurantMenu from './components/RestaurantMenu';
 import Profile from './components/Profile';
 import Shimmer from './components/Shimmer';
+import UserContext from './Utils/UserContext';
+
 // import About from "./components/About";
 // import Instamart from './components/Instamart';   // Normal way to import components
 // Lazy Loading (Dynamic Import) of a component 
@@ -17,12 +19,23 @@ const Instamart = lazy(() => import("./components/Instamart"));   //This is just
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
+
+   const [user, setUser] = useState({
+      name: "Mitika Gupta",
+      email: "mitikagupta12@gmail.com",
+   })
+
+
    return (
-      <>
+      <UserContext.Provider 
+      value={{
+         user:user
+       }}
+      >
       <Header/>
       <Outlet />
       <Footer/>
-      </>
+      </UserContext.Provider>
       );
    };
 
